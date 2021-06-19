@@ -8,7 +8,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class Message extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'message', 'created_at', 'updated_at'];
+    protected $fillable = ['room_id', 'user_id', 'message', 'created_at', 'updated_at'];
     public $timestamps = true;
 
     public function user()
