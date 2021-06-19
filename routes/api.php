@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\MessageController;
+use App\Http\Controllers\Api\RoomMessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('message', [MessageController::class, 'store']);
+Route::get('message/{roomId}', [MessageController::class, 'list']);
+Route::post('room/{userIdReceiver}', [RoomMessageController::class, 'createOrUpdate']);
+Route::get('room', [RoomMessageController::class, 'list']);
