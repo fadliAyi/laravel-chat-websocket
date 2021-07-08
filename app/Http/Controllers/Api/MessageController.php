@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\SendedMessage;
 use App\Models\User;
 use App\Models\Message;
 use Illuminate\Http\Request;
@@ -23,6 +24,7 @@ class MessageController extends Controller
         ]);
 
         //broadcast message to other
+        event(new SendedMessage($request->room_id, ['message' => $request->message, 'room_id' => $request->room_id]));
 
         return response()->json([
             'status' => true,
